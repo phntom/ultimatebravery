@@ -1,0 +1,94 @@
+here is my reference solution if you want to compare
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Matcher tokenizer = Pattern.compile("[^*?]*[*?]").matcher(pattern);
+        StringBuilder regexPattern = new StringBuilder();
+        int charsDone = 0;
+        while (tokenizer.find()) {
+            String token = tokenizer.group();
+            charsDone += token.length();
+            String tokenChar = token.substring(token.length() - 1);
+            String normalText = token.substring(0, token.length() - 1);
+            if (!normalText.isEmpty()) {
+                if ("\\".equals(normalText.substring(normalText.length() - 1))) {
+                    regexPattern.append(Pattern.quote(normalText.substring(0, normalText.length() - 1) + tokenChar));
+                    continue;
+                }
+                regexPattern.append(Pattern.quote(normalText));
+            }
+            if ("?".equals(tokenChar)) {
+                regexPattern.append(".");
+            } else if ("*".equals(tokenChar)) {
+                regexPattern.append(".*?");
+            } else {
+                assert false;
+            }
+        }
+        if (charsDone < pattern.length()) {
+            regexPattern.append(Pattern.quote(pattern.substring(charsDone)));
+        }
+        return Pattern.compile(regexPattern.toString()).matcher(target).matches();
