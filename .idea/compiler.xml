@@ -30,10 +30,18 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
       </profile>
+      <profile default="false" name="Annotation profile for ultimatebravery" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="ultimatebravery" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="task1" target="1.7" />
       <module name="ubtask1" target="1.7" />
+      <module name="ultimatebravery" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
